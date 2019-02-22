@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 
 public class Queue<E> {
@@ -37,12 +39,12 @@ public class Queue<E> {
         if(top < 0) {
             throw new NoSuchElementException();
         }
-        for (int i = 0; i < top; i++) {
-            E store = elements[i];
-            for (int j = i; j < top; j++) {
-                if(elements[j].equals(store)){
-                    remove(j);
-                }
+        Set<E> sets = new HashSet<>();
+        for (int i = 0; i <= top; i++) {
+            if(!sets.contains(elements[i])) {
+                sets.add(elements[i]);
+            } else{
+                remove(i);
             }
         }
     }
